@@ -29,9 +29,8 @@ Use this skill when the user wants to:
 This folder is structured as one installable skill plus bundled style resources:
 
 ```text
-SKILL.md                         # install entrypoint and universal router
-design-system/SKILL.md           # subdirectory-compatible router copy
-design-system/<style>/DESIGN.md  # style-specific tokens, foundations, and usage notes
+SKILL.md                         # only install entrypoint and universal router
+design-system/<style>/DESIGN.md  # bundled style-specific tokens, foundations, and usage notes
 ```
 
 Do not expect a `SKILL.md` inside each style folder. Always read the selected style's `design-system/<slug>/DESIGN.md` before giving detailed recommendations or making UI changes.
