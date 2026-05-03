@@ -1,35 +1,52 @@
 ---
 name: design-system
-description: Use this skill whenever the user asks to generate, audit, improve, choose, combine, or apply a visual design system/style. This is the router skill for the bundled design styles in this folder: first inspect the design style registry, select the best matching style skill(s), then read the relevant `<slug>/DESIGN.md` and `<slug>/DESIGN.md` before implementing or advising. Also use for visual consistency checks, styling PR reviews, UI redesign direction, or prompts like “make this premium/minimal/bold/modern/dashboard/etc.”
+description: Use this skill whenever the user asks to generate, audit, improve, choose, combine, or apply a visual design system or UI style. This is the router for bundled design styles in this folder: inspect the registry, choose the best style(s), read the relevant `<slug>/DESIGN.md`, then apply the universal quality standards here. Also use for visual consistency checks, UI redesign direction, styling PR reviews, accessibility-aware design polish, anti-AI-slop review, or prompts like "make this premium/minimal/bold/modern/dashboard/etc."
 origin: ECC
 ---
 
-# Design System — Router, Generate & Audit Visual Systems
+# Design System Router
+
+Use this skill to choose and apply a visual direction with production-quality UI standards. The root skill contains universal rules. Each style folder contains one `DESIGN.md` file with style-specific tokens and guidance.
+
+## Core Mission
+
+Create interfaces that feel intentional, accessible, coherent, and specific to the user's product. Avoid generic AI-looking visuals. Treat style as a system: tokens, hierarchy, spacing, components, states, copy tone, responsiveness, and quality gates should work together.
 
 ## When to Use
 
-- Starting a new project that needs a design system
-- Auditing an existing codebase for visual consistency
-- Before a redesign — understand what you have
-- When the UI looks "off" but you can't pinpoint why
-- Reviewing PRs that touch styling
-- Choosing a visual direction from the bundled design style skills
-- Translating user language like “premium”, “friendly”, “dashboard”, “retro”, “bold”, or “minimal” into a concrete design style
-- Combining multiple compatible design styles into one coherent direction
+Use this skill when the user wants to:
+
+- Create a new visual direction or design system
+- Pick a style such as premium, minimal, bold, dashboard, retro, vintage, agentic, etc.
+- Improve UI polish, hierarchy, layout, colors, typography, or component consistency
+- Audit UI for design quality, accessibility, responsive behavior, or AI slop
+- Convert vague style requests into concrete tokens and implementation rules
+- Combine multiple visual references into one coherent direction
+- Review styling changes in code or propose design-system migration steps
+
+## Resource Model
+
+This folder is structured as one installable skill plus bundled style resources:
+
+```text
+design-system/
+  SKILL.md                 # universal router and quality standards
+  <style>/DESIGN.md        # style-specific tokens, foundations, and usage notes
+```
+
+Do not expect a `SKILL.md` inside each style folder. Always read the selected style's `DESIGN.md` before giving detailed recommendations or making UI changes.
 
 ## Router Workflow
 
-This skill is a parent/router for the design style skills stored in sibling folders.
+1. Parse the user's goal, product type, audience, brand tone, constraints, and visual adjectives.
+2. Use the **Design Style Registry** to shortlist 1-3 candidate styles.
+3. Choose one primary style. Add one secondary style only when it adds useful nuance.
+4. Read the selected style file(s): `<slug>/DESIGN.md`.
+5. Apply the universal standards in this root skill.
+6. If implementing code, inspect the project's existing tokens/components before changing visuals.
+7. Explain trade-offs briefly when a requested style conflicts with accessibility, product context, or usability.
 
-1. Parse the user's goal, audience, product type, and visual adjectives.
-2. Check the **Design Style Registry** below and shortlist 1-3 matching styles.
-3. Pick a primary style. Optionally pick one secondary style only when it adds useful nuance.
-4. Read the selected style resource before acting:
-   - `<slug>/DESIGN.md` for visual tokens, examples, rationale, and implementation guidance
-5. If the user names a style directly, use that style unless it conflicts with their product/audience. If it conflicts, briefly explain the concern and suggest a better match.
-6. When combining styles, keep one dominant visual language. Do not stack effects blindly; combine intent, not decoration.
-
-### Selection Heuristics
+## Style Selection Heuristics
 
 - Product dashboards, admin panels, analytics: `dashboard`, `enterprise`, `ant`, `application`, `bento`
 - SaaS/product marketing: `premium`, `modern`, `sleek`, `levels`, `contemporary`, `professional`
@@ -41,24 +58,111 @@ This skill is a parent/router for the design style skills stored in sibling fold
 - Retro/game/nostalgia: `retro`, `vintage`, `pacman`, `tetris`, `dithered`
 - Futuristic/AI/dev/cyber: `agentic`, `futuristic`, `cosmic`, `neon`, `mono`
 - Minimal/clarity-first: `minimal`, `simple`, `clean`, `spacious`, `flat`
-- Material/component-library alignment: `material`, `shadcn`, `ant`
+- Component-library alignment: `material`, `shadcn`, `ant`
 
-### Output Pattern When Asked to Choose a Style
+## Universal Quality Standards
+
+### Accessibility Baseline
+
+Design decisions must preserve usability before decoration.
+
+- Meet WCAG 2.2 AA contrast for text, icons, focus states, and controls.
+- Use semantic HTML before ARIA when implementing UI.
+- Provide visible `focus-visible` states for all interactive controls.
+- Keep touch targets at least 44x44px where practical.
+- Support keyboard navigation for menus, dialogs, forms, tabs, and custom controls.
+- Respect reduced motion preferences; avoid essential information being animation-only.
+- Design loading, empty, error, disabled, and long-content states.
+- Check text overflow, long labels, localization expansion, and responsive breakpoints.
+
+### Anti AI-Slop Rules
+
+Avoid patterns that make the interface feel generated, generic, or decoration-first:
+
+- Do not default to purple/blue gradients unless the selected style justifies it.
+- Do not add glassmorphism, glow, blur, or floating cards without functional purpose.
+- Do not center every hero with generic headline/subheadline/CTA rhythm.
+- Do not overuse huge rounded corners, vague shadows, stock icons, or random emoji.
+- Do not mix multiple visual metaphors unless one style clearly dominates.
+- Do not use arbitrary colors, spacing, or font sizes outside a coherent system.
+- Replace vague adjectives with concrete tokens, spacing, hierarchy, and examples.
+
+### Visual System Rules
+
+- Define color roles: background, surface, surface-muted, border, text, text-muted, primary, accent, success, warning, danger.
+- Define type roles: display, h1, h2, h3, body, label, caption, code/mono if needed.
+- Use a spacing rhythm, usually 4px or 8px based.
+- Keep radius, shadows, borders, and elevation consistent by component role.
+- Make component states explicit: default, hover, active, focus, disabled, loading, error, selected.
+- Preserve hierarchy: important content should win through scale, contrast, position, and spacing.
+- Prefer reusable design tokens over one-off values.
+
+### Interaction and Motion
+
+- Motion should clarify state, hierarchy, or cause/effect.
+- Use transforms and opacity for performance-friendly animation.
+- Keep transitions short and purposeful for common UI interactions.
+- Avoid scroll-triggered theatrics in utility-heavy workflows unless the product context calls for it.
+
+### Responsive Behavior
+
+- Define how layout changes across mobile, tablet, and desktop.
+- Avoid fixed-width layouts that break on small screens.
+- Stack dense grids thoughtfully; do not simply shrink everything.
+- Keep primary actions reachable and forms easy to complete on touch devices.
+
+## Output Patterns
+
+### When asked to choose a style
 
 Return a concise recommendation:
 
 ```markdown
-Recommended style: `<slug>` — <why it fits>
-Optional secondary: `<slug>` — <what to borrow>
-Use these resources: `<slug>/DESIGN.md`
-Implementation notes: <3-5 bullets tailored to the user prompt>
+Recommended style: `<slug>` - <why it fits>
+Optional secondary: `<slug>` - <what to borrow>
+Read next: `<slug>/DESIGN.md`
+Implementation notes:
+- <token/component/layout note>
+- <accessibility note>
+- <anti-slop or quality note>
 ```
 
-When implementing code, do not stop at the recommendation. Read the chosen style files and apply the guidance.
+### When asked to generate a design system
+
+Produce implementation-ready guidance:
+
+```markdown
+## Context and goals
+## Selected style direction
+## Design tokens
+## Typography system
+## Layout and spacing rules
+## Component rules and states
+## Accessibility requirements
+## Anti-patterns to avoid
+## Implementation checklist
+```
+
+### When auditing an existing UI
+
+Score and explain:
+
+1. Color consistency
+2. Typography hierarchy
+3. Spacing rhythm
+4. Component consistency
+5. Responsive behavior
+6. Accessibility
+7. Interaction states and motion
+8. Information density
+9. Brand/style fit
+10. Polish and anti-slop
+
+For code reviews, include exact file paths and actionable fixes when available.
 
 ## Design Style Registry
 
-Use this registry to map user intent to a concrete style skill. Paths are relative to this `design-system` skill folder.
+Paths are relative to this `design-system` skill folder.
 
 | Slug | Use when the user wants... | Read next |
 |---|---|---|
@@ -120,70 +224,15 @@ Use this registry to map user intent to a concrete style skill. Paths are relati
 | `vibrant` | Lively color, playful typography, warm accents, and dynamic visual energy. | `vibrant/DESIGN.md` |
 | `vintage` | 1950s-1990s nostalgia, grain, retro palettes, pixel typography, and skeuomorphic touches. | `vintage/DESIGN.md` |
 
-## How It Works
+## Implementation Checklist
 
-### Mode 1: Generate Design System
+Before finalizing a design recommendation or UI change:
 
-Analyzes your codebase and generates a cohesive design system:
-
-```
-1. Scan CSS/Tailwind/styled-components for existing patterns
-2. Extract: colors, typography, spacing, border-radius, shadows, breakpoints
-3. Research 3 competitor sites for inspiration (via browser MCP)
-4. Propose a design token set (JSON + CSS custom properties)
-5. Generate DESIGN.md with rationale for each decision
-6. Create an interactive HTML preview page (self-contained, no deps)
-```
-
-Output: `DESIGN.md` + `design-tokens.json` + `design-preview.html`
-
-### Mode 2: Visual Audit
-
-Scores your UI across 10 dimensions (0-10 each):
-
-```
-1. Color consistency — are you using your palette or random hex values?
-2. Typography hierarchy — clear h1 > h2 > h3 > body > caption?
-3. Spacing rhythm — consistent scale (4px/8px/16px) or arbitrary?
-4. Component consistency — do similar elements look similar?
-5. Responsive behavior — fluid or broken at breakpoints?
-6. Dark mode — complete or half-done?
-7. Animation — purposeful or gratuitous?
-8. Accessibility — contrast ratios, focus states, touch targets
-9. Information density — cluttered or clean?
-10. Polish — hover states, transitions, loading states, empty states
-```
-
-Each dimension gets a score, specific examples, and a fix with exact file:line.
-
-### Mode 3: AI Slop Detection
-
-Identifies generic AI-generated design patterns:
-
-```
-- Gratuitous gradients on everything
-- Purple-to-blue defaults
-- "Glass morphism" cards with no purpose
-- Rounded corners on things that shouldn't be rounded
-- Excessive animations on scroll
-- Generic hero with centered text over stock gradient
-- Sans-serif font stack with no personality
-```
-
-## Examples
-
-**Generate for a SaaS app:**
-```
-/design-system generate --style minimal --palette earth-tones
-```
-
-**Audit existing UI:**
-```
-/design-system audit --url http://localhost:3000 --pages / /pricing /docs
-```
-
-**Check for AI slop:**
-```
-/design-system slop-check
-```
-
+- Selected style file has been read.
+- Tokens are coherent and not arbitrary.
+- Accessibility constraints are preserved.
+- Responsive behavior is accounted for.
+- Component states are specified or implemented.
+- The design has a clear primary visual language.
+- AI-slop patterns have been removed or justified by the style.
+- The result matches the user's product, audience, and goal.

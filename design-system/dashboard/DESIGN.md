@@ -30,26 +30,122 @@ spacing:
   sourceScale: "8pt baseline grid"
 ---
 
+# Dashboard Design Style
+
 ## Overview
 
-Dark-themed cloud-platform aesthetic with modular grids, glass-like panels, and strong data hierarchy for productivity dashboards.
+Dark cloud-platform dashboards with modular grids, glass panels, and strong data hierarchy.
 
-## Style Foundations
+Use this style when the interface should feel structured, data-forward, efficient, and highly scannable. The design should be recognizable as Dashboard, but still prioritize clarity, accessibility, and product fit over decoration.
 
-- **Visual style:** modern, clean, cloud-platform aesthetic (Heroku/Vercel/GitHub inspired), dark theme, subtle gradients, soft shadows, glass-like panels, rounded components
-- **Typography scale:** 12/14/16/20/24/32
-- **Typography fonts:** primary=IBM Plex Sans, display=IBM Plex Sans, mono=IBM Plex Sans
-- **Typography weights:** 100, 200, 300, 400, 500, 600, 700, 800, 900
-- **Color palette:** primary, neutral, success, warning, danger
+## Style Intent
+
+This style should help the interface feel:
+
+- coherent and recognizable as Dashboard
+- aligned with the user's product, audience, and task context
+- visually distinctive without becoming decorative noise
+- accessible, responsive, and implementation-ready
+- consistent across layout, components, states, and content tone
+
+## Design Tokens
+
+### Color
+
+- **Primary:** `#0C5CAB` - main actions, active states, and key highlights.
+- **Secondary:** `#0a4a8a` - supporting accents, secondary surfaces, or tonal variation.
+- **Surface:** `#09090b` - page backgrounds, cards, panels, and layout surfaces.
+- **Text:** `#fafafa` - primary readable content.
+- **Neutral:** `#09090b` - borders, muted backgrounds, dividers, or inactive UI.
+- **Success:** `#10b981` - completed, positive, or confirmed states.
+- **Warning:** `#f59e0b` - caution, pending, or review-needed states.
+- **Danger:** `#ef4444` - destructive, failed, or high-risk states.
+
+Keep color usage role-based. Do not introduce new raw colors unless they extend this palette deliberately.
+
+### Typography
+
+- **Display / H1:** IBM Plex Sans, `2rem`
+- **Body:** IBM Plex Sans, `1rem`
+- **Labels / metadata:** IBM Plex Sans, `0.75rem`
+- **Scale:** 12/14/16/20/24/32
+- **Weights:** 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+Use typography to create hierarchy before adding decoration. Headings should establish intent; body copy should stay readable; labels should clarify system state.
+
+### Spacing and Radius
+
 - **Spacing scale:** 8pt baseline grid
+- **Small spacing:** `8px`
+- **Medium spacing:** `16px`
+- **Small radius:** `4px`
+- **Medium radius:** `8px`
 
-## Colors
+Use spacing consistently across sections, cards, forms, and component internals. Avoid one-off values that make the system feel uneven.
 
-- **Primary (#0C5CAB):** Token from style foundations.
-- **Secondary (#0a4a8a):** Token from style foundations.
-- **Success (#10b981):** Token from style foundations.
-- **Warning (#f59e0b):** Token from style foundations.
-- **Danger (#ef4444):** Token from style foundations.
-- **Surface (#09090b):** Token from style foundations.
-- **Text (#fafafa):** Token from style foundations.
-- **Neutral (#09090b):** Derived from the surface token for official format compatibility.
+## Component Guidance
+
+Prioritize these component patterns for this style:
+
+- Metric cards and data panels
+- Tables, filters, and search controls
+- Status badges, alerts, and activity logs
+
+### Surfaces and Cards
+
+- Use surfaces to group related content and actions.
+- Keep card padding, border radius, and border/shadow treatment consistent.
+- Make selected, active, hover, and disabled states visually distinct.
+
+### Navigation and Hierarchy
+
+- Keep primary navigation predictable and easy to scan.
+- Use typography, spacing, and color contrast to guide attention.
+- Keep secondary actions visually quieter than primary actions.
+
+### Forms and Actions
+
+- Labels should be clear and visible.
+- Validation and error states should be specific and recoverable.
+- Primary actions should describe outcomes, not vague actions.
+
+## Layout Rules
+
+- Start from a clear content hierarchy before styling details.
+- Use the spacing scale to separate sections, groups, and individual controls.
+- Keep alignment consistent across repeated components.
+- Design mobile, tablet, and desktop behavior intentionally.
+- Preserve whitespace where it improves comprehension; reduce it where density is the product need.
+
+## Accessibility Notes
+
+- Maintain WCAG 2.2 AA contrast for text and interactive elements.
+- Provide visible focus states for keyboard users.
+- Do not rely on color alone for status or validation.
+- Keep touch targets at least 44x44px where practical.
+- Support reduced motion preferences for animated effects.
+- Test long labels, empty states, loading states, error states, and overflow.
+
+## Do
+
+- Prioritize scannable hierarchy and state visibility.
+- Use cards, tables, charts, and filters consistently.
+- Keep dense information organized by task priority.
+- Use the defined tokens as the default source of truth.
+- Keep component behavior predictable across the product.
+
+## Don't
+
+- Do not hide key metrics behind decorative surfaces.
+- Do not use low-contrast chart colors.
+- Do not let density collapse spacing or touch targets.
+- Do not add visual effects that are not supported by the style intent.
+- Do not introduce arbitrary colors, spacing, radius, or shadow values.
+
+## Best Used For
+
+- analytics dashboards
+- admin panels
+- data-heavy workflows
+- operations tools
+- developer consoles
