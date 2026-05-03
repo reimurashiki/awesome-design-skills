@@ -1,7 +1,6 @@
 ---
 name: design-system
 description: Use this skill whenever the user asks to generate, audit, improve, choose, combine, or apply a visual design system or UI style. This is the router for bundled design styles in this folder: inspect the registry, choose the best style(s), read the relevant `design-system/<slug>/DESIGN.md`, then apply the universal quality standards here. Also use for visual consistency checks, UI redesign direction, styling PR reviews, accessibility-aware design polish, anti-AI-slop review, or prompts like "make this premium/minimal/bold/modern/dashboard/etc."
-origin: ECC
 ---
 
 # Design System Router
